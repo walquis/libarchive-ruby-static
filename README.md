@@ -6,10 +6,11 @@ Anyway, a "gem install fig" would often fail due to missing dependencies.  For i
 
 
 Windows Build Environment Prerequisites:
+
 * C:\Ruby192
 * C:\rubydev
 
-To install the pre-requisites...
+To install the Windows pre-requisites...
 
 Run the Ruby 1.9.2 MingW installer: http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/rubyinstaller-1.9.2-p290.exe (Install in C:\ruby192)
 
@@ -27,5 +28,5 @@ zlib: wget http://zlib.net/zlib125.zip -O zlib-1.2.5.zip
 
 About build-xplatform-probably-stale.rb - It was working last I checked, but I moved away from it due to the differing packaging needs of Windows and Linux:  Windows mswin32 and mingw32 gems can package the same binary as distinct architectures, but the Rubies on Ubuntu and RedHat are indistinguishable from an architecture perspective, so a single "x86_64-linux" build cannot be pre-built and packaged.  Instead, the gem on Linux needs to compile upon install.
 
-This library supports a "gem install fig" that should work on any Linux system, and any Windows ruby-1.9.2 systems (at least, those with mingw32 and mswin32 platforms). A "gem install fig18" will work for Windows Ruby 1.8.6 systems.
+This gem supports a "gem install fig" (as of a fig version soon after 0.1.37) that should work on any Linux system, and any Windows ruby-1.9.2 systems (at least, those with mingw32 and mswin32 platforms). A "gem install fig18" will work for Windows Ruby 1.8.6 systems.
 
