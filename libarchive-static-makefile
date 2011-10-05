@@ -1,0 +1,80 @@
+LIBARCHIVE_OBJS = \
+archive_check_magic.o \
+archive_entry.o \
+archive_entry_copy_bhfi.o \
+archive_entry_copy_stat.o \
+archive_entry_link_resolver.o \
+archive_entry_stat.o \
+archive_entry_strmode.o \
+archive_entry_xattr.o \
+archive_read.o \
+archive_read_data_into_fd.o \
+archive_read_disk.o \
+archive_read_disk_entry_from_file.o \
+archive_read_disk_set_standard_lookup.o \
+archive_read_extract.o \
+archive_read_open_fd.o \
+archive_read_open_file.o \
+archive_read_open_filename.o \
+archive_read_open_memory.o \
+archive_read_support_compression_all.o \
+archive_read_support_compression_bzip2.o \
+archive_read_support_compression_compress.o \
+archive_read_support_compression_gzip.o \
+archive_read_support_compression_none.o \
+archive_read_support_compression_program.o \
+archive_read_support_compression_rpm.o \
+archive_read_support_compression_uu.o \
+archive_read_support_compression_xz.o \
+archive_read_support_format_all.o \
+archive_read_support_format_ar.o \
+archive_read_support_format_cpio.o \
+archive_read_support_format_empty.o \
+archive_read_support_format_iso9660.o \
+archive_read_support_format_mtree.o \
+archive_read_support_format_raw.o \
+archive_read_support_format_tar.o \
+archive_read_support_format_xar.o \
+archive_read_support_format_zip.o \
+archive_string.o \
+archive_string_sprintf.o \
+archive_util.o \
+archive_virtual.o \
+archive_windows.o \
+archive_write.o \
+archive_write_disk.o \
+archive_write_disk_set_standard_lookup.o \
+archive_write_open_fd.o \
+archive_write_open_file.o \
+archive_write_open_filename.o \
+archive_write_open_memory.o \
+archive_write_set_compression_bzip2.o \
+archive_write_set_compression_compress.o \
+archive_write_set_compression_gzip.o \
+archive_write_set_compression_none.o \
+archive_write_set_compression_program.o \
+archive_write_set_compression_xz.o \
+archive_write_set_format.o \
+archive_write_set_format_ar.o \
+archive_write_set_format_by_name.o \
+archive_write_set_format_cpio.o \
+archive_write_set_format_cpio_newc.o \
+archive_write_set_format_mtree.o \
+archive_write_set_format_pax.o \
+archive_write_set_format_shar.o \
+archive_write_set_format_ustar.o \
+archive_write_set_format_zip.o \
+filter_fork.o \
+filter_fork_windows.o
+
+.c.o:
+	gcc -DHAVE_CONFIG_H -I.. $(CFLAGS) -g -O2 -MD -MP -c -DPIC $<
+
+libarchive.a: $(LIBARCHIVE_OBJS)
+	ar cru libarchive.a $^ $(LIBZLIB_A)
+
+clean:
+	rm -f *.o *.d libarchive.a
+
+veryclean: clean
+	rm -f Makefile config.h

@@ -1,0 +1,22 @@
+LIBARCHIVE_WRAPPER_OBJS = \
+archive_read_support_compression.o \
+archive_read_support_format.o \
+archive_write_open_rb_str.o \
+archive_write_set_compression.o \
+libarchive.o \
+libarchive_archive.o \
+libarchive_entry.o \
+libarchive_reader.o \
+libarchive_writer.o
+
+.c.o:
+	gcc $(CFLAGS) -I. -I../../libarchive-2.8.4/libarchive -DLIBARCHIVE_STATIC -DHAVE_CONFIG_H -DHAVE_ARCHIVE_H -DHAVE_ARCHIVE_ENTRY_H -O3 -g -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long -c -DPIC $<
+
+libarchive_ruby.so: $(LIBARCHIVE_WRAPPER_OBJS)
+	gcc -shared -s -o libarchive_ruby.so $^ $(LDFLAGS)
+
+clean:
+	rm -f *.o libarchive_ruby.so
+
+veryclean: clean
+	rm -f Makefile config.h
