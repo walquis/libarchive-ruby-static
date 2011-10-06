@@ -30,3 +30,27 @@ About build-xplatform-probably-stale.rb - It was working last I checked, but I m
 
 This gem supports a "gem install fig" (as of a fig version soon after 0.1.37) that should work on any Linux system, and any Windows ruby-1.9.2 systems (at least, those with mingw32 and mswin32 platforms). A "gem install fig18" will work for Windows Ruby 1.8.6 systems.
 
+Here is what happens when fig is installed on different architectures and rubies:
+
+<table>
+<tr>
+  <th>&nbsp;</th>
+  <th>1.8.6</th>
+  <th>1.9.2</th>
+</tr>
+<tr>
+  <td>redhat & ubuntu</td>
+  <td>gem install fig18<br>fig18-0.1.38-x86_64-linux.gem<br>\->libarchive-static-1.0.0.gem (compiles native ext)</td>
+  <td>gem install fig<br>fig-0.1.38-x86_64-linux.gem<br>\->libarchive-static-1.0.0.gem (compiles native ext)</td>
+</tr>  
+<tr>
+  <td>mswin32</td>
+  <td>gem install fig18<br>fig18-0.1.38.gem<br>\->libarchive-static-ruby186-1.0.0-i386-mswin32.gem (no compile)</td>
+  <td>gem install fig<br>fig-0.1.38.gem<br>\->libarchive-static-1.0.0-i386-mswin32.gem (no compile)</td>
+</tr>
+<tr>
+  <td>mingw32</td>
+  <td>gem install fig18<br>fig18-0.1.38.gem<br>\->libarchive-static-ruby186-1.0.0-i386-mingw32.gem (no compile)</td>
+  <td>gem install fig<br>fig-0.1.38.gem<br>\->libarchive-static-1.0.0-i386-mingw32.gem (no compile)</td>
+</tr>
+</table>
