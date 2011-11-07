@@ -9,8 +9,21 @@ libarchive_entry.o \
 libarchive_reader.o \
 libarchive_writer.o
 
+arch:=$(shell uname)
+ifeq ($(arch), Darwin)
+	EXT:=bundle
+else
+	EXT:=so
+endif
+
 .c.o:
 	gcc $(CFLAGS) -I. -I../../libarchive-2.8.4/libarchive -DLIBARCHIVE_STATIC -DHAVE_CONFIG_H -DHAVE_ARCHIVE_H -DHAVE_ARCHIVE_ENTRY_H -O3 -g -Wextra -Wno-unused-parameter -Wno-parentheses -Wpointer-arith -Wwrite-strings -Wno-missing-field-initializers -Wno-long-long -c -DPIC $<
+
+all: libarchive_ruby.$(EXT)
+
+# For Mac OS...
+libarchive_ruby.bundle: $(LIBARCHIVE_WRAPPER_OBJS)
+	gcc -bundle -o libarchive_ruby.bundle $^ $(LDFLAGS) -lruby -lz
 
 libarchive_ruby.so: $(LIBARCHIVE_WRAPPER_OBJS)
 	gcc -shared -s -o libarchive_ruby.so $^ $(LDFLAGS)
