@@ -28,7 +28,7 @@ exit $?.exitstatus if $?.exitstatus > 0
 
 # Set up the linux gem package directory.
 
-cd 'linux-gem-package/ext' do
+cd 'generic-gem-package/ext' do
   rm_rf zlib
   mkdir_p zlib
   cp Dir["../../#{zlib}/*.[ch]"], zlib
@@ -47,7 +47,7 @@ cd 'linux-gem-package/ext' do
 end
 
 # Package the gem.
-cd 'linux-gem-package' do
+cd 'generic-gem-package' do
   ENV['BUILD_VERSION'] ||= '1.0.0'
   system "gem build libarchive-static.gemspec"
   exit $?.exitstatus if $?.exitstatus > 0
