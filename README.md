@@ -24,7 +24,7 @@ Follow these instructions to set up your dev env:  https://github.com/oneclick/r
 
 This gem supports a "gem install fig" (as of a fig version soon after 0.1.37) that should work on any Linux or Mac system, and on Windows systems running ruby-1.9.2 mingw32 and mswin32 platforms. A "gem install fig18" will work for Windows systems running Ruby 1.8.6.
 
-When the pre-reqs are in place, run `ruby winbuid.rb`.  This unpacks all the sources, builds zlib, builds libarchive,
+When the pre-reqs are in place, run `ruby winbuild.rb`.  This unpacks all the sources, builds zlib, builds libarchive,
 and builds the Ruby wrapper around them all, producing a libarchive_ruby.so.  This libarchive_ruby.so is then packaged into
 two gems via a 'gem build' command: one for mingw32, and one for mswin32.
 
