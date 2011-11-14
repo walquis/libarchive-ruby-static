@@ -14,19 +14,32 @@ Windows Build Environment Prerequisites
 * C:\Ruby192
 * C:\rubydev
 
-To install the Windows pre-requisites...
+## To install the Windows pre-requisites...
 
 Run the Ruby 1.9.2 MingW installer: http://files.rubyforge.vm.bytemark.co.uk/rubyinstaller/rubyinstaller-1.9.2-p290.exe (Install in C:\ruby192)
 
 Download and run http://github.com/downloads/oneclick/rubyinstaller/DevKit-tdm-32-4.5.2-20110712-1620-sfx.exe (Install in C:\rubydev)
 
+Run the Ruby 1.8.6 MingW installer: http://rubyforge.org/frs/download.php/71066/rubyinstaller-1.8.6-p398.exe (Install in C:\ruby186)
+
 Follow these instructions to set up your dev env:  https://github.com/oneclick/rubyinstaller/wiki/Development-Kit
 
 This gem supports a "gem install fig" (as of a fig version soon after 0.1.37) that should work on any Linux or Mac system, and on Windows systems running ruby-1.9.2 mingw32 and mswin32 platforms. A "gem install fig18" will work for Windows systems running Ruby 1.8.6.
 
+### Building the 1.9.2 Windows gems 
+
 When the pre-reqs are in place, run `ruby winbuild.rb`.  This unpacks all the sources, builds zlib, builds libarchive,
 and builds the Ruby wrapper around them all, producing a libarchive_ruby.so.  This libarchive_ruby.so is then packaged into
 two gems via a 'gem build' command: one for mingw32, and one for mswin32.
+
+### Building the 1.8.6 Windows gems
+
+Set your path to 1.8.6--`c:\libarchive-ruby-static>set PATH=C:\ruby186\bin;%PATH%`--and run `ruby winbuild.rb`.
+
+### Push the gems to http://rubygems.org
+
+To push the gems, cd to `windows-gem-package` and run `gem push <the-gem>` for each gem.
+
 
 # How to package the libarchive-static gem for Linux and Mac:
 
