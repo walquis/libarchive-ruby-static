@@ -7,7 +7,7 @@ debug = (ARGV[0]=="debug") # Set true to bypass all the removing, unpacking and 
 unzip = '"C:/Program Files/7-Zip/7z.exe" x'
 cfg = RbConfig::CONFIG # "c" for short...
 rbver = RUBY_VERSION =~ /1.8/ ? "-ruby186" : ""
-bldver = ( ENV['BUILD_VERSION'] ||= '1.0.1' )
+bldver = ( ENV['BUILD_VERSION'] ||= '1.0.3' )
 zlib = 'zlib-1.2.5'
 libar = 'libarchive-2.8.4'
 wrapper = 'libarchive-0.1.1'
