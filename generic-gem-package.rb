@@ -2,6 +2,8 @@ require 'fileutils'
 include FileUtils
 require 'rbconfig'  # For RbConfig::CONFIG
 
+ENV['BUILD_VERSION'] ||= '1.0.3'
+
 debug = (ARGV[0]=="debug") # Set true to bypass all the removing, unpacking and sh-configure'ing
 
 cfg = RbConfig::CONFIG # "c" for short...
@@ -48,8 +50,7 @@ end
 
 # Package the gem.
 cd 'generic-gem-package' do
-  ENV['BUILD_VERSION'] ||= '1.0.0'
-  system "gem build libarchive-static.gemspec"
+  system "gem build libarchive-static.gemspec"  # uses BUILD_VERSION env var for gem version
   exit $?.exitstatus if $?.exitstatus > 0
 end
 
