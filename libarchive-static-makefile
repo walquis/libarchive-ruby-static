@@ -68,7 +68,7 @@ filter_fork.o \
 filter_fork_windows.o
 
 .c.o:
-	gcc -DHAVE_CONFIG_H -I.. $(CFLAGS) -g -O2 -MD -MP -c -DPIC $<
+	gcc -DHAVE_CONFIG_H -DLIBARCHIVE_STATIC -D_SSIZE_T_DEFINED -I.. $(CFLAGS) -g -O2 -MD -MP -c -DPIC $<
 
 libarchive.a: $(LIBARCHIVE_OBJS)
 	ar cru libarchive.a $^ $(LIBZLIB_A)

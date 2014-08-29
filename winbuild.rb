@@ -7,7 +7,7 @@ debug = (ARGV[0]=="debug") # Set true to bypass all the removing, unpacking and 
 unzip = '"C:/Program Files/7-Zip/7z.exe" x'
 cfg = RbConfig::CONFIG # "c" for short...
 rbver = RUBY_VERSION =~ /1.8/ ? "-ruby186" : ""
-bldver = ( ENV['BUILD_VERSION'] ||= '1.0.3' )
+bldver = ( ENV['BUILD_VERSION'] ||= '1.0.5' )
 zlib = 'zlib-1.2.5'
 libar = 'libarchive-2.8.4'
 wrapper = 'libarchive-0.1.1'
@@ -23,9 +23,11 @@ unless debug
 
   rm_rf wrapper if File.directory? wrapper
   system "gem unpack #{wrapper}.gem"
+  system "patch libarchive-0.1.1/ext/archive_write_open_rb_str.c < archive_write_open_rb_str.c.patch"
+  system "patch libarchive-0.1.1/ext/libarchive_win32.h < libarchive_win32.h.patch"
 end
 
-ENV['PATH']   = "c:/rubydev/bin;c:/rubydev/mingw/bin;#{ENV['PATH']}"
+ENV['PATH']   = "c:/RubyDevKit/bin;c:/RubyDevKit/mingw/bin;#{ENV['PATH']}"
 
 # Build zlib...
 cd zlib do
@@ -36,7 +38,6 @@ end
 
 # Build libarchive...
 ENV['CFLAGS'] = "-I#{build_root}/#{zlib}"
-ENV['PATH']   = "c:/rubydev/bin;c:/rubydev/mingw/bin;#{ENV['PATH']}"
 cd libar do
   unless debug
     system "sh configure --with-zlib=yes --without-xml2 --without-expat"

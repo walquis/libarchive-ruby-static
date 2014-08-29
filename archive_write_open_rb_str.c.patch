@@ -1,0 +1,11 @@
+--- "C:\\Users\\srv_teamcity\\libarchive-ruby-static\\libarchive-0.1.1\\ext\\archive_write_open_rb_str.c"	2014-08-29 16:20:37.779893400 -0500
++++ "C:\\Users\\srv_teamcity\\libarchive-ruby-static.built\\libarchive-0.1.1\\ext\\archive_write_open_rb_str.c"	2014-07-03 14:23:20.778253600 -0500
+@@ -2,7 +2,7 @@
+ #include <ruby.h>
+ 
+ #ifdef _WIN32
+-typedef long ssize_t;
++typedef _SSIZE_T_ ssize_t;
+ #endif
+ 
+ static int rb_str_write_open(struct archive *a, void *client_data) {

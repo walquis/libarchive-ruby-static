@@ -1,0 +1,11 @@
+--- libarchive_win32.h	2014-08-29 16:51:28 -0500
++++ libarchive_win32.h.new	2014-08-29 17:07:37 -0500
+@@ -3,7 +3,7 @@
+ 
+ #ifdef _WIN32
+ 
+-typedef long ssize_t;
++typedef _SSIZE_T_ ssize_t;
+ 
+ #ifdef open
+ #undef open
